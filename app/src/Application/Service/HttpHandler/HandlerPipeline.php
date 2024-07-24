@@ -18,7 +18,9 @@ final class HandlerPipeline implements HandlerRegistryInterface, CoreHandlerInte
 {
     /** @var HandlerInterface[] */
     private array $handlers = [];
+
     private int $position = 0;
+
     private bool $isHandled = false;
 
     public function __construct(
@@ -58,7 +60,7 @@ final class HandlerPipeline implements HandlerRegistryInterface, CoreHandlerInte
     {
         $handler = $this->handlers[$this->position] ?? null;
 
-        $this->position++;
+        ++$this->position;
 
         if ($handler === null) {
             return new Response(404);
